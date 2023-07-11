@@ -4,17 +4,8 @@ const constructorController = {
 
     readAll: async (req, res, next) => {
         try {
-            const allConstructor = await constructorsService.readAllConstructor()
+            const allConstructor = await constructorsService.readAllConstructor(req.params)
             res.json(allConstructor)
-        } catch (err) {
-            next(err)
-        }
-    },
-
-    read: async (req, res, next) => {
-        try {
-            const constructor = await constructorsService.readConstructor(req.params)
-            res.json(constructor)
         } catch (err) {
             next(err)
         }

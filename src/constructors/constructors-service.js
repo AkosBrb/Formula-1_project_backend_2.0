@@ -3,14 +3,9 @@ import constructorsModel from "./constructors-model"
 
 const constructorsService = {
 
-    readAllConstructor: async () => {
-        const constructors = await constructorsModel.readAll()
+    readAllConstructor: async ({ id }) => {
+        const constructors = await constructorsModel.readAll(id)
         return constructors.rows
-    },
-
-    readConstructor: async ({ id }) => {
-        const constructor = await constructorsModel.read(id)
-        return constructor.rows
     },
 
     addContructor: async ({ name, points }) => {

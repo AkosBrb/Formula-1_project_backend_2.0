@@ -3,12 +3,8 @@ import { addConstructorQuery, deleteConstructorQuery, readAllConstructorQuery, r
 
 const constructorsModel = {
 
-    read: async (id) => {
-        return client.query(readConstructorQuery, [id])
-    },
-
-    readAll: async () => {
-        return client.query(readAllConstructorQuery)
+    readAll: async (id) => {
+        return client.query(readAllConstructorQuery, [id])
     },
 
     add: async (id, name, points) => {

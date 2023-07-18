@@ -3,23 +3,15 @@ import groupsModel from "./groups-model"
 
 const groupsService = {
 
-    readGroups: async () => {
-        const allGroup = await groupsModel.readAllGroups();
+    readGroups: async (queries) => {
+        const direction = queries.order ? `ORDER BY name ${queries.order}` : "ASC"
+        const search = queries.search ? queries.search : null;
+        const allGroup = await groupsModel.readAllGroups(direction, search);
         return allGroup.rows
     },
 
-    readGroup: async ({ id }) => {
-        const group = await groupsModel.readGroup(id);
-        return group.rows[0];
-    },
-
-    searchGroup: async ({ searchParam }) => {
-        const searchedGroup = await groupsModel.searchGroup(searchParam);
-        return searchedGroup.rows[0];
-    },
-
-    updateGroup: async ({ name }) => {
-        const updatedGroup = await groupsModel.updateGroup(name);
+    updateGroup: async ({ id }, { name }) => {
+        const updatedGroup = await groupsModel.updateGroup(id, name);
         return updatedGroup.rows;
     },
 
@@ -32,6 +24,21 @@ const groupsService = {
     deleteGroup: async ({ id }) => {
         const deletedGroup = await groupsModel.deleteGroup(id);
         return deletedGroup.rows[0];
+    },
+
+    listMembers: async ({ groupId }) => {
+        const members = await groupsModel.listAllMember(groupId);
+        return members.rows
+    },
+
+    addMember: async ({ userId, groupId }) => {
+        const newMember = await groupsModel.addMember(userId, groupId);
+        return newMember.rows
+    },
+
+    deleteMember: async ({ userId, groupId }) => {
+        const deletedMember = await groupsModel.deleteMember(userId, groupId);
+        return deletedMember.rows
     }
 }
 

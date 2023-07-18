@@ -22,7 +22,8 @@ export const createUsersTable = `
         "password" VARCHAR (100),
         "email" VARCHAR (50),
         "name" VARCHAR (35),
-        "birth" DATE
+        "birth" DATE,
+        "is_admin" BOOLEAN DEFAULT FALSE
     )
 `;
 

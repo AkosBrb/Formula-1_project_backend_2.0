@@ -1,22 +1,14 @@
 import client from "../db/db"
-import { addGroupQuery, deleteGroupQuery, readAllGroupQuery, readGroupQuery, searchGroupQuery, updateGroupNameQuery } from "./groups-queris"
+import { addGroupQuery, addMemeberQuery, deleteGroupQuery, deleteMember, listAllMember, readAllGroupQuery, readGroupQuery, searchGroupQuery, updateGroupNameQuery } from "./groups-queris"
 
 const groupsModel = {
 
-    readAllGroups: async () => {
-        return client.query(readAllGroupQuery);
+    readAllGroups: async (direction, search) => {
+        return client.query(`${readAllGroupQuery} ${direction}`, [search]);
     },
 
-    readGroup: async (id) => {
-        return client.query(readGroupQuery, [id]);
-    },
-
-    searchGroup: async (searchParam) => {
-        return client.query(searchGroupQuery, [searchParam]);
-    },
-
-    updateGroup: async (name) => {
-        return client.query(updateGroupNameQuery, [name]);
+    updateGroup: async (id, name) => {
+        return client.query(updateGroupNameQuery, [name, id]);
     },
 
     deleteGroup: async (id) => {
@@ -25,6 +17,18 @@ const groupsModel = {
 
     addGroup: async (id, name, user_id) => {
         return client.query(addGroupQuery, [id, name, user_id]);
+    },
+
+    addMember: async (userId, groupId) => {
+        return client.query(addMemeberQuery, [userId, groupId])
+    },
+
+    listAllMember: async (groupId) => {
+        return client.query(listAllMember, [groupId])
+    },
+
+    deleteMember: async (userId, groupId) => {
+        return client.query(deleteMember, [groupId, userId])
     }
 }
 

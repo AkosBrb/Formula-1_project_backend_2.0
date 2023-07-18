@@ -8,7 +8,7 @@ export const addTippsQuery = `
   (race_weekend, group_id, user_id, first_place,
     second_place, third_place, fourth_place, fifth_place)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-`
+`;
 
 export const deleteTippsQuery = `
   DELETE FROM tipps

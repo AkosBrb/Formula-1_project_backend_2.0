@@ -4,34 +4,16 @@ const groupsController = {
 
     readAll: async (req, res, next) => {
         try {
-            const groups = await groupsService.readGroups();
+            const groups = await groupsService.readGroups(req.query);
             res.json(groups)
         } catch (err) {
             next(err)
         }
     },
 
-    read: async (req, res, next) => {
-        try {
-            const group = await groupsService.readGroup(req.params);
-            res.json(group);
-        } catch (err) {
-            next(err)
-        }
-    },
-
-    search: async (req, res, next) => {
-        try {
-            const searchedGroup = await groupsService.searchGroup(req.body);
-            res.json(searchedGroup)
-        } catch (err) {
-            next(err);
-        }
-    },
-
     update: async (req, res, next) => {
         try {
-            const updatedGroup = await groupsService.updateGroup(req.body);
+            const updatedGroup = await groupsService.updateGroup(req.params, req.body);
             res.json(updatedGroup)
         } catch (err) {
             next(err)
@@ -53,6 +35,33 @@ const groupsController = {
             res.json(deletedGroup);
         } catch (err) {
             next(err);
+        }
+    },
+
+    listAllMember: async (req, res, next) => {
+        try {
+            const members = await groupsService.listMembers(req.params)
+            res.json(members)
+        } catch (err) {
+            next(err)
+        }
+    },
+
+    addMember: async (req, res, next) => {
+        try {
+            const newMember = await groupsService.addMember(req.query)
+            res.json(newMember)
+        } catch (err) {
+            next(err)
+        }
+    },
+
+    deleteMember: async (req, res, next) => {
+        try {
+            const deletedMemeber = await groupsService.deleteMember(req.query);
+            res.json(deletedMemeber)
+        } catch (err) {
+            next(err)
         }
     }
 }

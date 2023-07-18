@@ -2,18 +2,9 @@ import racersService from "./racers-service"
 
 const racersController = {
 
-    read: async (req, res, next) => {
-        try {
-            const racer = await racersService.readRacer(req.params)
-            res.json(racer)
-        } catch (err) {
-            next(err)
-        }
-    },
-
     readAll: async (req, res, next) => {
         try {
-            const allRacer = await racersService.readAllRacer()
+            const allRacer = await racersService.readAllRacer(req.params)
             res.json(allRacer)
         } catch (err) {
             next(err)

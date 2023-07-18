@@ -3,12 +3,8 @@ import { addRacerQuery, deleteRacerQuery, readAllRacerQuery, readRacerQuery, upd
 
 const racersModel = {
 
-    read: async (id) => {
-        return client.query(readRacerQuery, [id])
-    },
-
-    readAll: async () => {
-        return client.query(readAllRacerQuery)
+    readAll: async (name) => {
+        return client.query(readAllRacerQuery, [name])
     },
 
     add: async (id, num, name, team, points) => {

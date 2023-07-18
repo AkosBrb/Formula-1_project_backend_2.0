@@ -3,14 +3,10 @@ import racersModel from "./racers-model"
 
 const racersService = {
 
-    readAllRacer: async () => {
-        const racers = await racersModel.readAll()
+    readAllRacer: async ({ name }) => {
+        const racerName = name || null;
+        const racers = await racersModel.readAll(racerName)
         return racers.rows
-    },
-
-    readRacer: async ({ id }) => {
-        const racer = await racersModel.read(id)
-        return racer.rows
     },
 
     addRacer: async ({ num, name, team, points }) => {

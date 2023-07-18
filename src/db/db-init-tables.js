@@ -29,7 +29,9 @@ export const createUsersTable = `
 export const createGroupsTable = `
     CREATE TABLE IF NOT EXISTS "groups" (
         "id" VARCHAR (24) PRIMARY KEY,
-        "name" TEXT,
+        "name" VARCHAR (100) NOT NULL,
+        "description" TEXT,
+        "is_public" BOOLEAN,
         "created_by" VARCHAR (24) REFERENCES users(id)
     )
 `;
@@ -37,6 +39,33 @@ export const createGroupsTable = `
 export const createUsersGroupsTable = `
     CREATE TABLE IF NOT EXISTS "users_groups" (
         "user_id" VARCHAR (24) REFERENCES users(id),
-        "group_id" VARCHAR (24) REFERENCES groups(id)
+        "group_id" VARCHAR (24) REFERENCES groups(id),
+        "user_points_in_group" INTEGER
     )
 `;
+
+export const createTippsTable = `
+    CREATE TABLE IF NOT EXISTS "tipps" (
+        "id" SERIAL PRIMARY KEY,
+        "race_weekend" VARCHAR (100),
+        "group_id" VARCHAR (24) REFERENCES groups(id),
+        "user_id" VARCHAR (24) REFERENCES users(id),
+        "first_place" VARCHAR (100),
+        "second_place" VARCHAR (100),
+        "third_place" VARCHAR (100),
+        "fourth_place" VARCHAR (100),
+        "fifth_place" VARCHAR (100)
+    )
+`
+
+export const createResultsTable = `
+    CREATE TABLE IF NOT EXISTS "results" (
+        "id" SERIAL PRIMARY KEY,
+        "race_weekend" VARCHAR (100),
+        "first_place" VARCHAR (100),
+        "second_place" VARCHAR (100),
+        "third_place" VARCHAR (100),
+        "fourth_place" VARCHAR (100),
+        "fifth_place" VARCHAR (100)
+    )
+`

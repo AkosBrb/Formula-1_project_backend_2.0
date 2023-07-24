@@ -5,7 +5,7 @@ import verifyAdmin from "../middlewares/verify-admin";
 
 const resultsRouter = Router();
 
-resultsRouter.get('/', resultsController.readAll);
+resultsRouter.get('/:searchParam', resultsController.readAll);
 resultsRouter.post('/', verifyUser, verifyAdmin, resultsController.add);
 
 export default resultsRouter

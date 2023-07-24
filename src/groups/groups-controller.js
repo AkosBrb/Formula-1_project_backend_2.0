@@ -49,7 +49,7 @@ const groupsController = {
 
     addMember: async (req, res, next) => {
         try {
-            const newMember = await groupsService.addMember(req.query)
+            const newMember = await groupsService.addMember(req.params, req.body)
             res.json(newMember)
         } catch (err) {
             next(err)
@@ -58,7 +58,7 @@ const groupsController = {
 
     deleteMember: async (req, res, next) => {
         try {
-            const deletedMemeber = await groupsService.deleteMember(req.query);
+            const deletedMemeber = await groupsService.deleteMember(req.params, req.body);
             res.json(deletedMemeber)
         } catch (err) {
             next(err)

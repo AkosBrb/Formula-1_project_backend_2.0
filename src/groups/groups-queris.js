@@ -28,8 +28,10 @@ VALUES ($1, $2)
 `;
 
 export const listAllMember = `
-SELECT ug.user_id FROM users_groups AS ug
-WHERE group_id = $1
+SELECT u.name FROM users AS u
+INNER JOIN users_groups AS ug
+ON u.id = ug.user_id
+WHERE ug.group_id = $1
 `;
 
 export const deleteMember = `

@@ -31,12 +31,12 @@ const groupsService = {
         return members.rows
     },
 
-    addMember: async ({ userId, groupId }) => {
+    addMember: async ({ groupId }, { userId }) => {
         const newMember = await groupsModel.addMember(userId, groupId);
         return newMember.rows
     },
 
-    deleteMember: async ({ userId, groupId }) => {
+    deleteMember: async ({ groupId }, { userId }) => {
         const deletedMember = await groupsModel.deleteMember(userId, groupId);
         return deletedMember.rows
     }

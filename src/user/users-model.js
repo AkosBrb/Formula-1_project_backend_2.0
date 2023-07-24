@@ -1,18 +1,19 @@
 import client from "../db/db"
+import HttpError from "../utils/HttpError"
 import { createUserQuery, deleteUser, readUserQuery, readUsersQuery, updateUser } from "./users-queries"
 
 const usersModel = {
 
-    read: async (email) => {
-        return client.query(readUserQuery, [email])
+    readAll: async (email) => {
+        return client.query(readUsersQuery, [email])
     },
 
-    readAll: async () => {
-        return client.query(readUsersQuery)
-    },
-
-    create: async (id, email, password, name, birth) => {
-        return client.query(createUserQuery, [id, email, password, name, birth])
+    create: async (id, { email, password, name, birth }) => {
+        try {
+            return client.query(createUserQuery, [id, email, password, name, birth])
+        } catch {
+            throw new HttpError('Server error : already registered', 500);
+        }
     },
 
     update: async (id, email, name, birth) => {

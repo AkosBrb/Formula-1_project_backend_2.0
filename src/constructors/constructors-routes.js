@@ -5,9 +5,9 @@ import verifyUser from "../middlewares/verify-user";
 
 const constructorsRouter = Router();
 
-constructorsRouter.get('/all', verifyUser, constructorController.readAll);
-constructorsRouter.post('/add', verifyUser, verifyAdmin, constructorController.add);
-constructorsRouter.patch('/update/:id', verifyUser, verifyAdmin, constructorController.update);
-constructorsRouter.delete('/delete/:id', verifyUser, verifyAdmin, constructorController.delete);
+constructorsRouter.get('/:id', constructorController.readAll);
+constructorsRouter.post('/', verifyUser, verifyAdmin, constructorController.add);
+constructorsRouter.patch('/:id', verifyUser, verifyAdmin, constructorController.update);
+constructorsRouter.delete('/:id', verifyUser, verifyAdmin, constructorController.delete);
 
 export default constructorsRouter

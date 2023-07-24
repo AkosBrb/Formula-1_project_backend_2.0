@@ -19,10 +19,10 @@ export const createConstructorsTable = `
 export const createUsersTable = `
     CREATE TABLE IF NOT EXISTS "users" (
         "id" VARCHAR (24) PRIMARY KEY,
-        "password" VARCHAR (100),
-        "email" VARCHAR (50),
-        "name" VARCHAR (35),
-        "birth" DATE,
+        "password" VARCHAR (100) NOT NULL,
+        "email" UNIQUE VARCHAR (50) NOT NULL,
+        "name" VARCHAR (35) NOT NULL,
+        "birth" DATE NOT NULL,
         "is_admin" BOOLEAN DEFAULT FALSE
     )
 `;

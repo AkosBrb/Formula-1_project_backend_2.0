@@ -3,7 +3,7 @@ import resultsService from "./results-service"
 const resultsController = {
     readAll: async (req, res, next) => {
         try {
-            const results = await resultsService.readAllResult(req.query);
+            const results = await resultsService.readAllResult(req.params);
             res.json(results)
         } catch (err) {
             next(err)

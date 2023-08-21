@@ -14,7 +14,7 @@ const authService = {
     },
 
     login: async ({ email, password }) => {
-        const userResult = await usersModel.read(email);
+        const userResult = await usersModel.readAll(email);
         const dbUser = userResult.rows[0];
         if (!dbUser) throw new Error("Invalid email/password!");
 

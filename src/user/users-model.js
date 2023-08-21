@@ -1,6 +1,6 @@
 import client from "../db/db"
 import HttpError from "../utils/HttpError"
-import { createUserQuery, deleteUser, readUserQuery, readUsersQuery, updateUser } from "./users-queries"
+import { createUserQuery, deleteUser, readUsersQuery, updateUser } from "./users-queries"
 
 const usersModel = {
 
@@ -8,7 +8,7 @@ const usersModel = {
         return client.query(readUsersQuery, [email])
     },
 
-    create: async (id, { email, password, name, birth }) => {
+    create: async (id, email, password, name, birth) => {
         try {
             return client.query(createUserQuery, [id, email, password, name, birth])
         } catch {

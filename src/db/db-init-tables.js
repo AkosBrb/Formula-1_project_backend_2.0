@@ -20,7 +20,7 @@ export const createUsersTable = `
     CREATE TABLE IF NOT EXISTS "users" (
         "id" VARCHAR (24) PRIMARY KEY,
         "password" VARCHAR (100) NOT NULL,
-        "email" UNIQUE VARCHAR (50) NOT NULL,
+        "email" VARCHAR (50) UNIQUE NOT NULL,
         "name" VARCHAR (35) NOT NULL,
         "birth" DATE NOT NULL,
         "is_admin" BOOLEAN DEFAULT FALSE

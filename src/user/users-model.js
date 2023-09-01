@@ -10,7 +10,8 @@ const usersModel = {
 
     create: async (id, email, password, name, birth) => {
         try {
-            return client.query(createUserQuery, [id, email, password, name, birth])
+            const user = await client.query(createUserQuery, [id, email, password, name, birth])
+            return user
         } catch {
             throw new HttpError('Server error : already registered', 500);
         }

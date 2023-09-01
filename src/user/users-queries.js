@@ -1,6 +1,7 @@
 export const createUserQuery = `
 INSERT INTO users (id, email, password, name, birth)
 VALUES ($1, $2, $3, $4, $5)
+RETURNING id, email, name, birth
 `;
 
 export const readUsersQuery = `

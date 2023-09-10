@@ -1,7 +1,6 @@
 export const readAllGroupQuery = `
 SELECT g.* FROM groups AS g
-WHERE ($1::varchar IS NULL OR id = $1)
-AND ($2::varchar IS NULL OR name ILIKE $2)
+WHERE ($1::varchar IS NULL OR name ILIKE $1)
 `;
 
 export const updateGroupNameQuery = `
@@ -17,8 +16,8 @@ WHERE id = $1
 
 export const addGroupQuery = `
 INSERT INTO groups 
-(id, name, created_by) 
-VALUES ($1, $2, $3)
+(id, name, description, is_public, created_by) 
+VALUES ($1, $2, $3, $4, $5)
 `;
 
 export const addMemeberQuery = `

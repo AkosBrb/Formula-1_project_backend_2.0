@@ -15,8 +15,8 @@ const groupsModel = {
         return client.query(deleteGroupQuery, [id]);
     },
 
-    addGroup: async (id, name, user_id) => {
-        return client.query(addGroupQuery, [id, name, user_id]);
+    addGroup: async (id, name, userId, description, isPublic) => {
+        return client.query(addGroupQuery, [id, name, description, isPublic, userId]);
     },
 
     addMember: async (userId, groupId) => {

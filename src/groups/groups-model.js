@@ -1,10 +1,14 @@
 import client from "../db/db"
-import { addGroupQuery, addMemeberQuery, deleteGroupQuery, deleteMember, listAllMember, readAllGroupQuery, readGroupQuery, searchGroupQuery, updateGroupNameQuery } from "./groups-queris"
+import { addGroupQuery, addMemeberQuery, deleteGroupQuery, deleteMember, getGroupByIdQuery, listAllMember, readAllGroupQuery, updateGroupNameQuery } from "./groups-queris"
 
 const groupsModel = {
 
     readAllGroups: async (direction, search) => {
         return client.query(`${readAllGroupQuery} ${direction}`, [search]);
+    },
+
+    readGroupById: async (id) => {
+        return client.query(`${getGroupByIdQuery}`, [id])
     },
 
     updateGroup: async (id, name) => {

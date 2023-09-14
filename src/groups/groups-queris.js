@@ -3,6 +3,11 @@ SELECT g.* FROM groups AS g
 WHERE ($1::varchar IS NULL OR name ILIKE $1)
 `;
 
+export const getGroupByIdQuery = `
+SELECT * FROM groups
+WHERE id = $1
+`;
+
 export const updateGroupNameQuery = `
 UPDATE groups
 SET name = $1
@@ -18,6 +23,7 @@ export const addGroupQuery = `
 INSERT INTO groups 
 (id, name, description, is_public, created_by) 
 VALUES ($1, $2, $3, $4, $5)
+RETURNING *
 `;
 
 export const addMemeberQuery = `

@@ -6,11 +6,12 @@ import authorize from '../middlewares/authorize'
 const groupsRouter = Router();
 
 groupsRouter.get('/', groupsController.readAll);
-groupsRouter.patch('/:id', verifyUser, groupsController.update);
+groupsRouter.get('/:id', authorize, verifyUser, groupsController.read);
+groupsRouter.patch('/:id', authorize, verifyUser, groupsController.update);
 groupsRouter.post('/', authorize, groupsController.add);
-groupsRouter.delete('/:id', verifyUser, groupsController.delete);
+groupsRouter.delete('/:id', authorize, verifyUser, groupsController.delete);
 groupsRouter.get('/members/:groupId', groupsController.listAllMember);
-groupsRouter.post('/add-member/:groupId', verifyUser, groupsController.addMember);
-groupsRouter.delete('/delete-member/:groupId', verifyUser, groupsController.deleteMember);
+groupsRouter.post('/add-member/:groupId', authorize, verifyUser, groupsController.addMember);
+groupsRouter.delete('/delete-member/:groupId', authorize, verifyUser, groupsController.deleteMember);
 
 export default groupsRouter;

@@ -3,7 +3,7 @@ import usersModel from "../user/users-model";
 async function verifyUser(req, res, next) {
     try {
         const userId = req.params;
-        const userEmail = await usersModel.read(req.user.email)
+        const userEmail = await usersModel.readAll(req.user.email)
         const { id: authUserId } = req.user;
 
         if (!userId && !userEmail) return next(console.log("User is missing!"))

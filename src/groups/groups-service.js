@@ -10,6 +10,11 @@ const groupsService = {
         return allGroup.rows
     },
 
+    readGroup: async ({ id }) => {
+        const group = await groupsModel.readGroupById(id);
+        return group.rows;
+    },
+
     updateGroup: async ({ id }, { name }) => {
         const updatedGroup = await groupsModel.updateGroup(id, name);
         return updatedGroup.rows;

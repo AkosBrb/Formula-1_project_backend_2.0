@@ -11,6 +11,15 @@ const groupsController = {
         }
     },
 
+    read: async (req, res, next) => {
+        try {
+            const group = await groupsService.readGroup(req.params);
+            res.json(group)
+        } catch (err) {
+            next(err)
+        }
+    },
+
     update: async (req, res, next) => {
         try {
             const updatedGroup = await groupsService.updateGroup(req.params, req.body);

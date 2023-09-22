@@ -28,14 +28,13 @@ RETURNING *
 
 export const addMemeberQuery = `
 INSERT INTO users_groups
-(user_id, group_id)
-VALUES ($1, $2)
+(user_id, user_name, group_id, user_points_in_group)
+VALUES ($1, $2, $3, 0)
+RETURNING *
 `;
 
 export const listAllMember = `
-SELECT u.name FROM users AS u
-INNER JOIN users_groups AS ug
-ON u.id = ug.user_id
+SELECT ug.user_name, ug.user_points_in_group FROM users_groups AS ug
 WHERE ug.group_id = $1
 `;
 

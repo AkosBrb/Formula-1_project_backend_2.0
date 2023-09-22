@@ -19,7 +19,7 @@ const authService = {
         if (!dbUser) throw new Error("Invalid email/password!");
 
         if (await bcrypt.compare(password, dbUser.password)) {
-            const token = jwt.sign({ id: dbUser.id, email: dbUser.email }, JWT_SECRET);
+            const token = jwt.sign({ id: dbUser.id, email: dbUser.email, userName: dbUser.name }, JWT_SECRET);
             return { token }
         }
 

@@ -21,7 +21,7 @@ export const createUsersTable = `
         "id" VARCHAR (24) PRIMARY KEY,
         "password" VARCHAR (100) NOT NULL,
         "email" VARCHAR (50) UNIQUE NOT NULL,
-        "name" VARCHAR (35) NOT NULL,
+        "name" VARCHAR (35) UNIQUE NOT NULL,
         "birth" DATE NOT NULL,
         "is_admin" BOOLEAN DEFAULT FALSE
     )
@@ -39,8 +39,9 @@ export const createGroupsTable = `
 
 export const createUsersGroupsTable = `
     CREATE TABLE IF NOT EXISTS "users_groups" (
-        "user_id" VARCHAR (24) REFERENCES users(id),
-        "group_id" VARCHAR (24) REFERENCES groups(id),
+        "user_id" VARCHAR (24) REFERENCES users(id) ON DELETE CASCADE,
+        "user_name" VARCHAR (35),
+        "group_id" VARCHAR (24) REFERENCES groups(id) ON DELETE CASCADE,
         "user_points_in_group" INTEGER
     )
 `;

@@ -12,6 +12,6 @@ groupsRouter.post('/', authorize, groupsController.add);
 groupsRouter.delete('/:id', authorize, verifyUser, groupsController.delete);
 groupsRouter.get('/members/:groupId', groupsController.listAllMember);
 groupsRouter.post('/add-member/:groupId', authorize, verifyUser, groupsController.addMember);
-groupsRouter.delete('/delete-member/:groupId', authorize, verifyUser, groupsController.deleteMember);
+groupsRouter.delete('/delete-member/:groupId/:userId', authorize, verifyUser, groupsController.deleteMember);
 
 export default groupsRouter;

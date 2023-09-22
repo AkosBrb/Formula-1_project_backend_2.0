@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import groupsModel from "./groups-model"
+import usersModel from "../user/users-model";
 
 const groupsService = {
 
@@ -22,7 +23,10 @@ const groupsService = {
 
     addGroup: async ({ name, userId, description, isPublic }) => {
         const id = nanoid(12);
+        const response = await usersModel.readAll(userId)
+        const userName = await response.rows[0].name
         const newGroup = await groupsModel.addGroup(id, name, userId, description, isPublic);
+        await groupsModel.addMember(userId, userName, id);
         return newGroup.rows[0];
     },
 
@@ -33,15 +37,23 @@ const groupsService = {
 
     listMembers: async ({ groupId }) => {
         const members = await groupsModel.listAllMember(groupId);
-        return members.rows
+        const data = members.rows.map(member => {
+            return {
+                userName: member.user_name,
+                points: member.user_points_in_group
+            }
+        })
+        return data
     },
 
-    addMember: async ({ groupId }, { userId }) => {
-        const newMember = await groupsModel.addMember(userId, groupId);
-        return newMember.rows
+    addMember: async ({ groupId }, { id }) => {
+        const response = await usersModel.readAll(id)
+        const userName = await response.rows[0].name
+        const newMember = await groupsModel.addMember(id, userName, groupId);
+        return newMember.rows[0]
     },
 
-    deleteMember: async ({ groupId }, { userId }) => {
+    deleteMember: async ({ groupId, userId }) => {
         const deletedMember = await groupsModel.deleteMember(userId, groupId);
         return deletedMember.rows
     }

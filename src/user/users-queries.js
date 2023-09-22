@@ -6,7 +6,7 @@ RETURNING id, email, name, birth
 
 export const readUsersQuery = `
 SELECT * FROM users
-WHERE ($1::varchar IS NULL OR $1 = email)
+WHERE ($1::varchar IS NULL OR $1 = email OR $1 = id)
 `;
 
 export const updateUser = `

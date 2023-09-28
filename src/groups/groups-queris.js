@@ -26,15 +26,16 @@ VALUES ($1, $2, $3, $4, $5)
 RETURNING *
 `;
 
-export const addMemeberQuery = `
+export const addMemberQuery = `
 INSERT INTO users_groups
-(user_id, user_name, group_id, user_points_in_group)
-VALUES ($1, $2, $3, 0)
+(user_id, group_id, user_points_in_group)
+VALUES ($1, $2, 0)
 RETURNING *
 `;
 
 export const listAllMember = `
-SELECT ug.user_name, ug.user_points_in_group FROM users_groups AS ug
+SELECT u.name, ug.user_points_in_group FROM users AS u
+JOIN users_groups AS ug ON u.id = ug.user_id
 WHERE ug.group_id = $1
 `;
 

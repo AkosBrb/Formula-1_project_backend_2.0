@@ -23,10 +23,8 @@ const groupsService = {
 
     addGroup: async ({ name, userId, description, isPublic }) => {
         const id = nanoid(12);
-        const response = await usersModel.readAll(userId)
-        const userName = await response.rows[0].name
         const newGroup = await groupsModel.addGroup(id, name, userId, description, isPublic);
-        await groupsModel.addMember(userId, userName, id);
+        await groupsModel.addMember(userId, id);
         return newGroup.rows[0];
     },
 
@@ -39,7 +37,7 @@ const groupsService = {
         const members = await groupsModel.listAllMember(groupId);
         const data = members.rows.map(member => {
             return {
-                userName: member.user_name,
+                userName: member.name,
                 points: member.user_points_in_group
             }
         })
@@ -47,9 +45,7 @@ const groupsService = {
     },
 
     addMember: async ({ groupId }, { id }) => {
-        const response = await usersModel.readAll(id)
-        const userName = await response.rows[0].name
-        const newMember = await groupsModel.addMember(id, userName, groupId);
+        const newMember = await groupsModel.addMember(id, groupId);
         return newMember.rows[0]
     },
 

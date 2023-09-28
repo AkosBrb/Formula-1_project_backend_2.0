@@ -1,6 +1,5 @@
 import client from "../db/db"
-import usersModel from "../user/users-model";
-import { addGroupQuery, addMemeberQuery, deleteGroupQuery, deleteMember, getGroupByIdQuery, listAllMember, readAllGroupQuery, updateGroupNameQuery } from "./groups-queris"
+import { addGroupQuery, addMemberQuery, deleteGroupQuery, deleteMember, getGroupByIdQuery, listAllMember, readAllGroupQuery, updateGroupNameQuery } from "./groups-queris"
 
 const groupsModel = {
 
@@ -24,8 +23,8 @@ const groupsModel = {
         return client.query(addGroupQuery, [id, name, description, isPublic, userId]);
     },
 
-    addMember: async (userId, userName, groupId) => {
-        return client.query(addMemeberQuery, [userId, userName, groupId])
+    addMember: async (userId, groupId) => {
+        return client.query(addMemberQuery, [userId, groupId])
     },
 
     listAllMember: async (groupId) => {

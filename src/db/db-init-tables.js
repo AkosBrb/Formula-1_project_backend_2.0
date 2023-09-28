@@ -40,7 +40,6 @@ export const createGroupsTable = `
 export const createUsersGroupsTable = `
     CREATE TABLE IF NOT EXISTS "users_groups" (
         "user_id" VARCHAR (24) REFERENCES users(id) ON DELETE CASCADE,
-        "user_name" VARCHAR (35),
         "group_id" VARCHAR (24) REFERENCES groups(id) ON DELETE CASCADE,
         "user_points_in_group" INTEGER
     )

@@ -1,11 +1,11 @@
 export const readRacerQuery = `
-SELECT * FROM racers
+SELECT num, name, team, points FROM racers
 WHERE ($1::varchar IS NULL OR $1 = name)
 `;
 
 export const addRacerQuery = `
-INSERT INTO racers (id, num, name, team, points)
-VALUES ($1, $2, $3, $4, $5)
+INSERT INTO racers (num, name, team, points)
+VALUES ($1, $2, $3, $4)
 `;
 
 export const updateRacerQuery = `

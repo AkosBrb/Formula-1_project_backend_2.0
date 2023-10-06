@@ -4,7 +4,7 @@ const racersController = {
 
     readAll: async (req, res, next) => {
         try {
-            const allRacer = await racersService.readAllRacer(req.params)
+            const allRacer = await racersService.readAllRacer(req.query)
             res.json(allRacer)
         } catch (err) {
             next(err)

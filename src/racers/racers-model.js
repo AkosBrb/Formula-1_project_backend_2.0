@@ -1,14 +1,14 @@
 import client from "../db/db"
-import { addRacerQuery, deleteRacerQuery, readAllRacerQuery, readRacerQuery, updateRacerQuery } from "./racers-queries"
+import { addRacerQuery, deleteRacerQuery, readRacerQuery, updateRacerQuery } from "./racers-queries"
 
 const racersModel = {
 
     readAll: async (name) => {
-        return client.query(readAllRacerQuery, [name])
+        return client.query(readRacerQuery, [name])
     },
 
-    add: async (id, num, name, team, points) => {
-        return client.query(addRacerQuery, [id, num, name, team, points])
+    add: async (num, name, team, points) => {
+        return client.query(addRacerQuery, [num, name, team, points])
     },
 
     update: async (num, name, team, points, id) => {

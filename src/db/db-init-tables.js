@@ -1,9 +1,8 @@
 export const createRacersTable = `
     CREATE TABLE IF NOT EXISTS "racers" (
-        "id" VARCHAR(30) PRIMARY KEY,
-        "num" INTEGER,
-        "name" VARCHAR (30),
-        "team" VARCHAR (40),
+        "num" INTEGER UNIQUE NOT NULL,
+        "name" VARCHAR (30) UNIQUE NOT NULL,
+        "team" VARCHAR (40) NOT NULL,
         "points" INTEGER
     )
 `;
@@ -60,9 +59,9 @@ export const createTippsTable = `
 `
 
 export const createResultsTable = `
-    CREATE TABLE IF NOT EXISTS "results" (
+    CREATE TABLE IF NOT EXISTS "race_weekends" (
         "id" SERIAL PRIMARY KEY,
-        "race_weekend" VARCHAR (100),
+        "race_weekend" VARCHAR (100) UNIQUE,
         "first_place" VARCHAR (100),
         "second_place" VARCHAR (100),
         "third_place" VARCHAR (100),

@@ -1,6 +1,7 @@
 export const readRacerQuery = `
 SELECT num, name, team, points FROM racers
 WHERE ($1::varchar IS NULL OR $1 = name)
+ORDER BY points DESC
 `;
 
 export const addRacerQuery = `

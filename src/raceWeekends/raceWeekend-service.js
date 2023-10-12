@@ -1,16 +1,16 @@
-import resultsModel from "./raceWeekend-model";
+import raceWeekendModel from "./raceWeekend-model";
 
-const resultsService = {
+const raceWeekendService = {
     readAllResult: async ({ searchParam }) => {
         const raceWeekend = searchParam || null;
-        const results = await resultsModel.readAllResult(raceWeekend);
+        const results = await raceWeekendModel.readAllResult(raceWeekend);
         return results.rows;
     },
 
     addResult: async (body) => {
-        const newResult = await resultsModel.addResult(body);
+        const newResult = await raceWeekendModel.addResult(body);
         return newResult.rows
     }
 }
 
-export default resultsService
+export default raceWeekendService

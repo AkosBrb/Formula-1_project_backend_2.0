@@ -1,7 +1,7 @@
 import client from '../db/db'
 import { addResultQuery, readAllResultQuery } from './raceWeekend-queries'
 
-const resultsModel = {
+const raceWeekendModel = {
     readAllResult: async (raceWeekend) => {
         return client.query(readAllResultQuery, [raceWeekend])
     },
@@ -11,4 +11,4 @@ const resultsModel = {
     }
 }
 
-export default resultsModel
+export default raceWeekendModel

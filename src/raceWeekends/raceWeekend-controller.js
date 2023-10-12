@@ -1,9 +1,9 @@
-import resultsService from "./raceWeekend-service"
+import raceWeekendService from "./raceWeekend-service"
 
-const resultsController = {
+const raceWeekendController = {
     readAll: async (req, res, next) => {
         try {
-            const results = await resultsService.readAllResult(req.params);
+            const results = await raceWeekendService.readAllResult(req.params);
             res.json(results)
         } catch (err) {
             next(err)
@@ -12,7 +12,7 @@ const resultsController = {
 
     add: async (req, res, next) => {
         try {
-            const newResult = await resultsService.addResult(req.body);
+            const newResult = await raceWeekendService.addResult(req.body);
             res.json(newResult)
         } catch (err) {
             next(err)
@@ -20,4 +20,4 @@ const resultsController = {
     }
 }
 
-export default resultsController
+export default raceWeekendController

@@ -1,4 +1,4 @@
-import resultsService from "./results-service"
+import resultsService from "./raceWeekend-service"
 
 const resultsController = {
     readAll: async (req, res, next) => {

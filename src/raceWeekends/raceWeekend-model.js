@@ -1,5 +1,5 @@
 import client from '../db/db'
-import { addResultQuery, readAllResultQuery } from './results-queries'
+import { addResultQuery, readAllResultQuery } from './raceWeekend-queries'
 
 const resultsModel = {
     readAllResult: async (raceWeekend) => {

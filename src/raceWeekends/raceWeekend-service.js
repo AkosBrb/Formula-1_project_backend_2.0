@@ -1,4 +1,4 @@
-import resultsModel from "./results-model";
+import resultsModel from "./raceWeekend-model";
 
 const resultsService = {
     readAllResult: async ({ searchParam }) => {

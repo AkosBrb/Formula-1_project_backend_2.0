@@ -1,11 +1,11 @@
 import { Router } from "express";
-import raceWeekendController from "./results-controller";
+import raceWeekendController from "./raceWeekend-controller";
 import verifyUser from "../middlewares/verify-user";
 import verifyAdmin from "../middlewares/verify-admin";
 
 const raceWeekendRouter = Router();
 
-raceWeekendController.get('/:searchParam', resultsController.readAll);
-raceWeekendController.post('/', verifyUser, verifyAdmin, resultsController.add);
+raceWeekendRouter.get('/:searchParam', raceWeekendController.readAll);
+raceWeekendRouter.post('/', verifyUser, verifyAdmin, raceWeekendController.add);
 
 export default raceWeekendRouter

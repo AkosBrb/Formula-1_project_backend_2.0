@@ -37,6 +37,7 @@ export const listAllMember = `
 SELECT u.name, ug.user_points_in_group FROM users AS u
 JOIN users_groups AS ug ON u.id = ug.user_id
 WHERE ug.group_id = $1
+ORDER BY ug.user_points_in_group DESC
 `;
 
 export const deleteMember = `

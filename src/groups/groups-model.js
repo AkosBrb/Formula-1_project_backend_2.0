@@ -1,5 +1,5 @@
 import client from "../db/db"
-import { addGroupQuery, addMemberQuery, deleteGroupQuery, deleteMember, getGroupByIdQuery, listAllMember, readAllGroupQuery, updateGroupNameQuery } from "./groups-queris"
+import { addGroupQuery, addMemberQuery, deleteGroupQuery, deleteMember, getGroupByIdQuery, listAllMember, readAllGroupQuery, totalMember, updateGroupNameQuery } from "./groups-queris"
 
 const groupsModel = {
 
@@ -8,7 +8,12 @@ const groupsModel = {
     },
 
     readGroupById: async (id) => {
-        return client.query(`${getGroupByIdQuery}`, [id])
+        const totalNumberOfMembers = await client.query(totalMember, [id]);
+        const group = await client.query(getGroupByIdQuery, [id]);
+        return {
+            group: group.rows,
+            total: totalNumberOfMembers.rows[0].count
+        }
     },
 
     updateGroup: async (id, name) => {
@@ -27,8 +32,8 @@ const groupsModel = {
         return client.query(addMemberQuery, [userId, groupId])
     },
 
-    listAllMember: async (groupId) => {
-        return client.query(listAllMember, [groupId])
+    listAllMember: async (groupId, limitPerPage) => {
+        return client.query(listAllMember, [groupId, limitPerPage])
     },
 
     deleteMember: async (userId, groupId) => {

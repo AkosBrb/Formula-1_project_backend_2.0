@@ -13,8 +13,8 @@ const groupsController = {
 
     read: async (req, res, next) => {
         try {
-            const group = await groupsService.readGroup(req.params);
-            res.json(group)
+            const { group, total } = await groupsService.readGroup(req.params);
+            res.json({ group, total })
         } catch (err) {
             next(err)
         }

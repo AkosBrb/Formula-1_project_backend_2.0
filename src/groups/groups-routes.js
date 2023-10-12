@@ -10,7 +10,7 @@ groupsRouter.get('/:id', authorize, verifyUser, groupsController.read);
 groupsRouter.patch('/:id', authorize, verifyUser, groupsController.update);
 groupsRouter.post('/', authorize, groupsController.add);
 groupsRouter.delete('/:id', authorize, verifyUser, groupsController.delete);
-groupsRouter.get('/members/:groupId', groupsController.listAllMember);
+groupsRouter.get('/members/:groupId/:limit', groupsController.listAllMember);
 groupsRouter.post('/add-member/:groupId', authorize, verifyUser, groupsController.addMember);
 groupsRouter.delete('/delete-member/:groupId/:userId', authorize, verifyUser, groupsController.deleteMember);
 

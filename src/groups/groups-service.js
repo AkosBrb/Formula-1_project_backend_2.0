@@ -1,6 +1,5 @@
 import { nanoid } from "nanoid";
 import groupsModel from "./groups-model"
-import usersModel from "../user/users-model";
 
 const groupsService = {
 
@@ -12,8 +11,8 @@ const groupsService = {
     },
 
     readGroup: async ({ id }) => {
-        const group = await groupsModel.readGroupById(id);
-        return group.rows;
+        const { group, total } = await groupsModel.readGroupById(id);
+        return { group, total };
     },
 
     updateGroup: async ({ id }, { name }) => {
@@ -33,8 +32,9 @@ const groupsService = {
         return deletedGroup.rows[0];
     },
 
-    listMembers: async ({ groupId }) => {
-        const members = await groupsModel.listAllMember(groupId);
+    listMembers: async ({ groupId, limit }) => {
+        const limitPerPage = limit ? limit : 10;
+        const members = await groupsModel.listAllMember(groupId, limitPerPage);
         const data = members.rows.map(member => {
             return {
                 userName: member.name,
